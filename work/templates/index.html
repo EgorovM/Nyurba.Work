@@ -1,0 +1,277 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>YkLab - Нюрба.Работа</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+  <!-- Custom fonts for this template -->
+  <link href="{% static 'vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'vendor/simple-line-icons/css/simple-line-icons.css' %}">
+  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
+
+  <!-- Plugin CSS -->
+  <link rel="stylesheet" href="{% static 'device-mockups/device-mockups.min.css' %}">
+
+  <!-- Custom styles for this template -->
+  <link href="{% static 'css/new-age.min.css' %}" rel="stylesheet">
+
+</head>
+
+<body id="page-top">
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand js-scroll-trigger" href="#page-top">YkLab</a>
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#download">Скачать</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#features">Преимущества</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#contact">Контакты</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <header class="masthead">
+    <div class="container h-100">
+      <div class="row h-100">
+        <div class="col-lg-7 my-auto">
+          <div class="header-content mx-auto">
+            <h1 class="mb-5">Найти <span id="message"></span> <br>в Нюрбе стало куда легче!</h1>
+            <a href="#download" class="btn btn-outline btn-xl js-scroll-trigger">Начать пользоваться!</a>
+          </div>
+        </div>
+        <div class="col-lg-5 my-auto">
+          <div class="device-container">
+            <div class="device-mockup iphone6_plus portrait white">
+              <div class="device">
+                <div class="screen">
+                  <!-- Demo image for screen mockup, you can put an image here, some HTML, an animation, video, or anything else! -->
+                  <img src="media/img/demo-screen-1.png" class="img-fluid" alt="">
+                </div>
+                <div class="button">
+                  <!-- You can hook the "home button" to some JavaScript events or just remove it -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="modal fade" id="makeOrder" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Новый заказ</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <form action="." method="POST" enctype="multipart/form-data">
+          {% csrf_token %}
+
+          <div class="modal-body">
+              <div class="form-group">
+                <label for="recipient-name" class="col-form-label">Заголовок:</label>
+                <input type="text" class="form-control" name="title" required>
+              </div>
+              <div class="form-group">
+                <label for="description" class="col-form-label">Описание:</label>
+                <textarea class="form-control" name="description"></textarea>
+              </div>
+              <div class="form-group">
+                <label for="telephone" class="col-form-label">Телефон:</label>
+                <input type="tel" pattern="79[0-9]{9}" class="form-control" name="telephone" required>
+                <small class="text-muted">Пример: 79142639094</small>
+              </div>
+              <div class="form-group">
+                <label for="number" class="col-form-label">Стоимость:</label>
+                <input type="number" class="form-control" name="cost" value="0" required>
+              </div>
+              <div class="custom-file">
+                <input type="file" class="custom-file-input" id="validatedCustomFile" name="image" accept="image/*">
+                <label class="custom-file-label" for="validatedCustomFile">Выберите файл...</label>
+              </div>
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-primary">Сделать заказ</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <section class="download bg-primary text-center" id="download">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 mx-auto">
+          <h2 class="section-heading">Хотите заработать в свободное время?</h2>
+          <p>Найдите разовую работу с помощью нашего приложения!</p>
+          <div class="badges">
+            <a class="badge-link" href="#"><img src="/media/img/google-play-badge.png" alt=""></a>
+          </div>
+          <p>или</p>
+          <a href="#" class="btn btn-info btn-xl" data-toggle="modal" data-target="#makeOrder">Сделать заказ прямо сейчас!</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="features" id="features">
+    <div class="container">
+      <div class="section-heading text-center">
+        <h2>Простота</h2>
+        <p class="text-muted">Нюрба.Работа это удобно и просто!</p>
+        <hr>
+      </div>
+      <div class="row">
+        <div class="col-lg-4 my-auto">
+          <div class="device-container">
+            <div class="device-mockup iphone6_plus portrait white">
+              <div class="device">
+                <div class="screen">
+                  <!-- Demo image for screen mockup, you can put an image here, some HTML, an animation, video, or anything else! -->
+                  <img src="media/img/demo-screen-1.png" class="img-fluid" alt="">
+                </div>
+                <div class="button">
+                  <!-- You can hook the "home button" to some JavaScript events or just remove it -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-8 my-auto">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-lg-6">
+                <div class="feature-item">
+                  <i class="icon-screen-smartphone text-primary"></i>
+                  <h3>Найти работу</h3>
+                  <p class="text-muted">Все атуальные работы в одном месте</p>
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="feature-item">
+                  <i class="icon-camera text-primary"></i>
+                  <h3>Найти исполнителя</h3>
+                  <p class="text-muted">Сделайте заказ в нашем приложении!</p>
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="feature-item">
+                  <i class="icon-camera text-primary"></i>
+                  <h3>Простота</h3>
+                  <p class="text-muted">Несколько кликов и вы уже нашли разовую работу!</p>
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="feature-item">
+                  <i class="icon-camera text-primary"></i>
+                  <h3>Удобство</h3>
+                  <p class="text-muted">Можно договориться о чем угодно!</p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta">
+    <div class="cta-content">
+      <div class="container">
+        <h2>Предложите работу</h2>
+        <a href="#download" class="btn btn-outline btn-xl js-scroll-trigger">Начать пользоваться</a>
+      </div>
+    </div>
+    <div class="overlay"></div>
+  </section>
+
+  <section class="contact bg-primary" id="contact">
+    <div class="container">
+      <h2>Есть вопросы? Свяжитесь
+        с нами!</h2>
+      <ul class="list-inline list-social">
+        <li class="list-inline-item social-vk">
+          <a href="https://vk.com/michilegorov">
+            <i class="fab fa-vk"></i>
+          </a>
+        </li>
+        <li class="list-inline-item social-whatsapp">
+          <a href="https://wa.me/79142639094">
+            <i class="fab fa-whatsapp"></i>
+          </a>
+        </li>
+        <li class="list-inline-item social-telegram">
+          <a href="tg://resolve?domain=loalkota">
+            <i class="fab fa-telegram"></i>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <p>&copy; YkLab 2020. Все права защищены.</p>
+    </div>
+  </footer>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+  <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+
+  <!-- Plugin JavaScript -->
+  <script src="{% static 'vendor/jquery-easing/jquery.easing.min.js' %}"></script>
+
+  <!-- Custom scripts for this template -->
+  <script src="{% static 'js/new-age.min.js' %}"></script>
+
+  <script type="text/javascript">
+    messages = ["работу", "исполнителя"];
+
+    function nextMsg(ind) {
+      var next_ind = (ind + 1) % messages.length;
+
+      $('#message').html(messages[ind])
+          .fadeIn(500)
+          .delay(1500)
+          .fadeOut(500, function() {
+            nextMsg(next_ind);
+          });
+    };
+
+    $(document).ready(function(){
+      nextMsg(0);
+    });
+  </script>
+</body>
+
+</html>
